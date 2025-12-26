@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎀</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe4ef, #ffc1dc);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.card {
+  width: 94%;
+  max-width: 390px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 30px;
+  padding: 24px 18px 28px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(255,105,180,0.25);
+  position: relative;
+  z-index: 2;
+  animation: popIn 1.2s ease;
+}
+
+h1 {
+  font-size: 2.4rem;
+  color: #ff4f9a;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: #ff8fc7;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+/* Cake image */
+.cake-wrapper {
+  position: relative;
+  width: 100%;
+  length: 50%;
+}
+
+.cake-img {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  display: block;
+  animation: floatCake 3s ease-in-out infinite;
+}
+
+/* Candle glow overlay */
+.glow {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255,200,120,0.6), transparent 70%);
+  animation: flicker 0.8s infinite;
+}
+
+/* Text */
+p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 6px 0;
+}
+
+.tap {
+  font-size: 0.75rem;
+  color: #ff4f9a;
+  margin-top: 10px;
+}
+
+/* Floating elements */
+.float {
+  position: absolute;
+  animation: floatUp 6s linear infinite;
+  font-size: 18px;
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkle 3s infinite;
+}
+
+/* Animations */
+@keyframes popIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatCake {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 0; }
+  to { transform: translateY(-110vh); opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%,100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Happy Birthday 🎀</h1>
+  <div class="subtitle">✨ Today is all about you ✨</div>
+
+  <div class="cake-wrapper">
+    <div class="glow"></div>
+    <img src="cake.png" alt="Birthday Cake" class="cake-img">
+  </div>
+
+  <p>May your day be sprinkled with love,</p>
+  <p>pink dreams & sweet magic 💕</p>
+  <p>You are cherished & adored 🌸</p>
+
+  <div class="tap">Tap anywhere for music 🎶</div>
+</div>
+
+<!-- Music -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9d8fddc96b.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Floating hearts & butterflies
+setInterval(() => {
+  const f = document.createElement("div");
+  f.className = "float";
+  f.innerHTML = Math.random() > 0.5 ? "💗" : "🦋";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.bottom = "-20px";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 6000);
+}, 400);
+
+// Sparkles
+setInterval(() => {
+  const s = document.createElement("div");
+  s.className = "sparkle";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.top = Math.random() * 100 + "vh";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 3000);
+}, 300);
+
+// Music (mobile safe)
+document.body.addEventListener("click", () => {
+  document.getElementById("music").play();
+}, { once: true });
+</script>
+
+</body>
+</html>
